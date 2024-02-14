@@ -1,11 +1,10 @@
-package Model;
+package src.Model;
 
 public class Faculty {
     public Faculty(int id, String name) {
         this.id = id;
         this.name = name;
     }
-
     private int id;
     private String name;
 

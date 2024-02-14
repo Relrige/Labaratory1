@@ -1,4 +1,4 @@
-package Interfaces;
+package src.Interfaces;
 
 public class Person {
     private int id;
@@ -6,17 +6,14 @@ public class Person {
     private String name;
     private String surname;
     private String fatherName;
-    private String course;
-    private String group;
 
-    public Person(int id, int cafedraId, String name, String surname, String fatherName, String course, String group) {
+
+    public Person(int id, int cafedraId, String name, String surname, String fatherName) {
         this.id = id;
         this.cafedraId = cafedraId;
         this.name = name;
         this.surname = surname;
         this.fatherName = fatherName;
-        this.course = course;
-        this.group = group;
     }
 
     @java.lang.Override
@@ -27,8 +24,6 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", fatherName='" + fatherName + '\'' +
-                ", course='" + course + '\'' +
-                ", group='" + group + '\'' +
                 '}';
     }
 
@@ -72,19 +67,5 @@ public class Person {
         this.fatherName = fatherName;
     }
 
-    public String getCourse() {
-        return course;
-    }
 
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
 }
