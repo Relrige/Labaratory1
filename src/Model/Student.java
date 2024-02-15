@@ -1,7 +1,8 @@
 package src.Model;
 
+import lombok.Data;
 import src.Interfaces.Person;
-
+@Data
 public class Student extends Person {
     private String course;
     private String group;

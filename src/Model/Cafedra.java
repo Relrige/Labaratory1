@@ -1,10 +1,11 @@
 package src.Model;
 
+import lombok.Data;
+import src.Helper.ArrayList;
+
+@Data
 public class Cafedra {
-
-    public Cafedra(String name) {
-
-    }
-
+    private String name;
+    ArrayList<Faculty> facultyArrayList;
 
 }

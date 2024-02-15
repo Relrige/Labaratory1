@@ -1,3 +1,5 @@
+package src;
+
 public enum MenuChoice {
     FACULTY("Факультет"),
     DEPARTMENT("Створити кафедру факультета"),
@@ -12,13 +14,8 @@ public enum MenuChoice {
     FILTER_DEPARTMENT_MEMBERS_BY_COURSE("Вивести всіх студентів кафедри вказаного курсу"),
     FILTER_DEPARTMENT_MEMBERS_BY_COURSE_SORTED("Вивести всіх студентів кафедри вказаного курсу впорядкованих за алфавітом");
     private final String description;
-    Action(String description) {
-        this.description = description;
+    MenuChoice(String факультет) {
+        description=факультет;
     }
-    public String getDescription() {
-        return description;
-    }
-    public String getDescription() {
-        return description;
-    }
+
 }

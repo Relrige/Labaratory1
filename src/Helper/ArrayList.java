@@ -2,7 +2,6 @@ package src.Helper;
 
 import java.util.AbstractList;
 import java.util.Arrays;
-import java.util.List;
 
 public class ArrayList<E> extends AbstractList<E> {
     private int size = 0;
@@ -55,9 +54,12 @@ public class ArrayList<E> extends AbstractList<E> {
         size--;
         return (E) item;
     }
-
+    public boolean contains(Object o) {
+        return indexOf(o) >= 0;
+    }
     private void ensureCapacity() {
         int newSize = elements.length * 2;
         elements = Arrays.copyOf(elements, newSize);
     }
+
 }
