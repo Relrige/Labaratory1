@@ -11,6 +11,7 @@ public class Student extends Person {
         this.course = course;
         this.group = group;
     }
+
     public String getCourse() {
         return course;
     }

@@ -7,7 +7,9 @@ public class Person {
     private String surname;
     private String fatherName;
 
+    public Person() {
 
+    }
     public Person(int id, int cafedraId, String name, String surname, String fatherName) {
         this.id = id;
         this.cafedraId = cafedraId;
