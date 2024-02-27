@@ -4,19 +4,19 @@ import lombok.Data;
 import src.Interfaces.Person;
 @Data
 public class Student extends Person {
-    private String course;
+    private int course;
     private String group;
-    public Student(int id, int cafedraId, String name, String surname, String fatherName,String course,String group) {
-        super(id, cafedraId, name, surname, fatherName);
+    public Student(Cafedra cafedra, String name, String surname, String fatherName,int course,String group) {
+        super(cafedra, name, surname, fatherName);
         this.course = course;
         this.group = group;
     }
 
-    public String getCourse() {
+    public int getCourse() {
         return course;
     }
 
-    public void setCourse(String course) {
+    public void setCourse(int course) {
         this.course = course;
     }
 

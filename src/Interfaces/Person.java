@@ -1,8 +1,9 @@
 package src.Interfaces;
 
+import src.Model.Cafedra;
+
 public class Person {
-    private int id;
-    private int cafedraId;
+    private Cafedra cafedra;
     private String name;
     private String surname;
     private String fatherName;
@@ -10,9 +11,8 @@ public class Person {
     public Person() {
 
     }
-    public Person(int id, int cafedraId, String name, String surname, String fatherName) {
-        this.id = id;
-        this.cafedraId = cafedraId;
+    public Person(Cafedra cafedra, String name, String surname, String fatherName) {
+        this.cafedra = cafedra;
         this.name = name;
         this.surname = surname;
         this.fatherName = fatherName;
@@ -21,28 +21,20 @@ public class Person {
     @java.lang.Override
     public java.lang.String toString() {
         return "Person{" +
-                "id=" + id +
-                ", cafedraId=" + cafedraId +
+                ", cafedraId=" + cafedra +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", fatherName='" + fatherName + '\'' +
                 '}';
     }
 
-    public int getId() {
-        return id;
+
+    public Cafedra getCafedra() {
+        return cafedra;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCafedraId() {
-        return cafedraId;
-    }
-
-    public void setCafedraId(int cafedraId) {
-        this.cafedraId = cafedraId;
+    public void setCafedra(Cafedra cafedra) {
+        this.cafedra = cafedra;
     }
 
     public String getName() {
