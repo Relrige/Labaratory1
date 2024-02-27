@@ -7,6 +7,9 @@ import src.Helper.DataInput;
 @Data
 public class University {
     public static ArrayList<Faculty> facultyArrayList;
+    public static ArrayList<Student> uniStudentArrayList;
+    public static ArrayList<Teacher> uniTeacherArrayList;
+
     String name = "TNU";
     public University(){
         facultyArrayList=new ArrayList<>();

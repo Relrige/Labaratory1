@@ -11,10 +11,21 @@ public class Student extends Person {
         this.course = course;
         this.group = group;
     }
+    public String toString() {
+        return "Студент: " +
+                "прізвище: " + getSurname() + ", " +
+                "ім'я: " + getName() + ", " +
+                "по-батькові: " + getFatherName() + ", "+
+                "Факультет: " + getCafedra().getFaculty().getName() + "," +
+                "кафедра: " + getCafedra().getName() +", " +
+                "курс: " + course + ", "+
+                "група: " + group;
+    }
 
     public int getCourse() {
         return course;
     }
+
 
     public void setCourse(int course) {
         this.course = course;

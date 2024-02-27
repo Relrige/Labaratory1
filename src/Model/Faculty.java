@@ -10,18 +10,23 @@ import static src.Model.University.findFaculty;
 public class Faculty {
     private String name;
     public static ArrayList<Cafedra> cafedraArrayList;
+    private  ArrayList<Student> facultyStudentArrayList;
+    private  ArrayList<Teacher> facultyTeacherArrayList;
+
     public Faculty(){
         cafedraArrayList=new ArrayList<>();
     }
     public Faculty(String name) {
         cafedraArrayList=new ArrayList<>();
         this.name=name;
+        this.facultyStudentArrayList=new ArrayList<>();
+        this.facultyTeacherArrayList=new ArrayList<>();
     }
     public static void createCafedra() {
         try {
             String name = DataInput.getString("Enter the name of the new cafedra: ");
             Faculty faculty = findFaculty(DataInput.getString("Enter a name of an existing faculty: "));
-            Cafedra newCafedra = new Cafedra(name);
+            Cafedra newCafedra = new Cafedra(name, faculty);
             cafedraArrayList.add(newCafedra);
 
         } catch (Exception e) {
@@ -61,4 +66,19 @@ public class Faculty {
         }
     }
 
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList getFacultyStudentArrayList() {
+        return facultyStudentArrayList;
+    }
+    public ArrayList getFacultyTeacherArrayList() {
+        return facultyTeacherArrayList;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

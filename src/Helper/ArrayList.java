@@ -28,6 +28,105 @@ public class ArrayList<E> extends AbstractList<E> {
         }
         return (E) elements[index];
     }
+    public static void printStudentsByCourse(ArrayList studentArrayList) {
+        {
+            Student[] studentArray = new Student[studentArrayList.size()];
+            for (int i = 0; i < studentArrayList.size(); i++) {
+                studentArray[i] = (Student) studentArrayList.get(i);
+            }
+
+            for (int i = studentArray.length - 1; i > 0; i--) {
+                for (int j = 0; j < i; j++) {
+                    if (studentArray[j].getCourse() > studentArray[j + 1].getCourse()) {
+                        Student temp = studentArray[j];
+                        studentArray[j] = studentArray[j + 1];
+                        studentArray[j + 1] = temp;
+                    }
+                }
+            }
+            for (Student student : studentArray) {
+                System.out.println(student.toString());
+            }
+        }
+    }
+    public static void printStudentsOfCourse(ArrayList studentArrayList, int course) {
+        {
+            Student[] studentArray = new Student[studentArrayList.size()];
+            for (int i = 0; i < studentArrayList.size(); i++) {
+                studentArray[i] = (Student) studentArrayList.get(i);
+            }
+            for (Student student : studentArray) {
+                if(student.getCourse() == course) {
+                    System.out.println(student.toString());
+                }
+            }
+        }
+    }
+    public static void printStudentsOfCourseSorted(ArrayList studentArrayList, int course) {
+        {
+            Student[] studentArray = new Student[studentArrayList.size()];
+            for (int i = 0; i < studentArrayList.size(); i++) {
+                studentArray[i] = (Student) studentArrayList.get(i);
+            }
+            for (int i = studentArray.length - 1; i > 0; i--) {
+                for (int j = 0; j < i; j++) {
+                    if (studentArray[j].getCourse() > studentArray[j + 1].getCourse()) {
+                        Student temp = studentArray[j];
+                        studentArray[j] = studentArray[j + 1];
+                        studentArray[j + 1] = temp;
+                    }
+                }
+            }
+            for (Student student : studentArray) {
+                if(student.getCourse() == course) {
+                    System.out.println(student.toString());
+                }
+            }
+        }
+    }
+
+    public static void printStudentsByAlphabet(ArrayList studentArrayList) {
+        {
+            Student[] studentArray = new Student[studentArrayList.size()];
+            for (int i = 0; i < studentArrayList.size(); i++) {
+                studentArray[i] = (Student) studentArrayList.get(i);
+            }
+
+            for (int i = studentArray.length - 1; i > 0; i--) {
+                for (int j = 0; j < i; j++) {
+                    if (studentArray[j].getSurname().compareTo( studentArray[j + 1].getSurname()) > 0) {
+                        Student temp = studentArray[j];
+                        studentArray[j] = studentArray[j + 1];
+                        studentArray[j + 1] = temp;
+                    }
+                }
+            }
+            for (Student student : studentArray) {
+                System.out.println(student.toString());
+            }
+        }
+    }
+    public static void printTeachersByAlphabet(ArrayList studentArrayList) {
+        {
+            Teacher[] studentArray = new Teacher[studentArrayList.size()];
+            for (int i = 0; i < studentArrayList.size(); i++) {
+                studentArray[i] = (Teacher) studentArrayList.get(i);
+            }
+
+            for (int i = studentArray.length - 1; i > 0; i--) {
+                for (int j = 0; j < i; j++) {
+                    if (studentArray[j].getSurname().compareTo( studentArray[j + 1].getSurname()) > 0) {
+                        Teacher temp = studentArray[j];
+                        studentArray[j] = studentArray[j + 1];
+                        studentArray[j + 1] = temp;
+                    }
+                }
+            }
+            for (Teacher student : studentArray) {
+                System.out.println(student.toString());
+            }
+        }
+    }
 
     @Override
     public void add(int index, E element) {

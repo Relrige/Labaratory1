@@ -8,6 +8,16 @@ public class Teacher extends Person {
     public Teacher(Cafedra cafedra, String name, String surname, String fatherName) {
         super(cafedra, name, surname, fatherName);
     }
+    public String toString() {
+        return "Викладач: " +
+                "прізвище: " + getSurname() + ", " +
+                "ім'я: " + getName() + ", " +
+                "по-батькові: " + getFatherName() + ", "+
+                "Факультет: " + getCafedra().getFaculty().getName() + "," +
+                "кафедра: " + getCafedra().getName();
+    }
 }
+
+
 
 

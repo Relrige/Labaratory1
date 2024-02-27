@@ -18,8 +18,8 @@ public class Person {
         this.fatherName = fatherName;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Person{" +
                 ", cafedraId=" + cafedra +
                 ", name='" + name + '\'' +

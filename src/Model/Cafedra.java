@@ -11,16 +11,19 @@ import static src.Model.Faculty.printArray;
 
 @Data
 public class Cafedra {
+    private final Faculty faculty;
     private String name;
-    static ArrayList<Student> studentArrayList;
-    static ArrayList<Teacher> teacherArrayList;
-    public Cafedra() {
+    ArrayList<Student> studentArrayList;
+    ArrayList<Teacher> teacherArrayList;
+    public Cafedra(Faculty faculty) {
+        this.faculty = faculty;
         studentArrayList=new ArrayList<>();
         teacherArrayList=new ArrayList<>();
     }
 
-    public Cafedra(String name) {
+    public Cafedra(String name, Faculty faculty) {
         this.name=name;
+        this.faculty=faculty;
         studentArrayList=new ArrayList<>();
         teacherArrayList=new ArrayList<>();
     }
@@ -30,13 +33,14 @@ public class Cafedra {
             String name = DataInput.getString("Enter the name of the new student: ");
             String surname = DataInput.getString("Enter the surname of the new student: ");
             String FatherName = DataInput.getString("Enter the FatherName of the new student: ");
-            Faculty.printArray();
             Cafedra cafedra = findCafedra(DataInput.getString("Enter a name of an existing cafedra: "));
             String group = DataInput.getString("Enter group a new student: ");
             int course = DataInput.getInt("Enter course of a new student: ");
             Student newStudent = new Student( cafedra,name,surname,FatherName, course, group);
             System.out.println(newStudent);
-            studentArrayList.add(newStudent);
+            University.uniStudentArrayList.add(newStudent);
+            cafedra.getStudentArrayList().add(newStudent);
+            cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
         }
         catch (Exception e) {
             System.err.println(e);
@@ -62,8 +66,8 @@ public class Cafedra {
         }
     }
     public static Student findStudent(String studentName) {
-        for (int i = 0; i < studentArrayList.size(); i++) {
-            Student student = studentArrayList.get(i);
+        for (int i = 0; i < University.uniStudentArrayList.size(); i++) {
+            Student student = University.uniStudentArrayList.get(i);
             if (studentName.equalsIgnoreCase(student.getName())) {
                 return student;
             }
@@ -72,36 +76,28 @@ public class Cafedra {
     }
     public static void removeStudent(Student student){
         try {
-            printArrayStudent();
             Student toDelete = findStudent(DataInput.getString("Enter a name of an existing student: "));
-            studentArrayList.remove(student);
+            student.getCafedra().getStudentArrayList().remove(student);
+            student.getCafedra().getFaculty().getFacultyStudentArrayList().remove(student);
+            University.uniStudentArrayList.remove(student);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public static void printArrayStudent() {
-        if(studentArrayList!=null) {
-        for (int i = 0; i < studentArrayList.size(); i++) {
-            Student student = studentArrayList.get(i);
-            System.out.println(student);
-        }}
-        else {
-            System.out.println("Students is empty");
-        }
-    }
     public static void createTeacher() {
         try {
-            String name = DataInput.getString("Enter the name of the new student: ");
-            String surname = DataInput.getString("Enter the surname of the new student: ");
-            String FatherName = DataInput.getString("Enter the FatherName of the new student: ");
+            String name = DataInput.getString("Enter the name of the new teacher: ");
+            String surname = DataInput.getString("Enter the surname of the new teacher: ");
+            String FatherName = DataInput.getString("Enter the FatherName of the new teacher: ");
 
-            Faculty.printArray();
+            printArray();
             Cafedra cafedra = findCafedra(DataInput.getString("Enter a name of an existing cafedra: "));
 
             Teacher newStudent = new Teacher(cafedra,name,surname,FatherName);
             System.out.println(newStudent);
-            teacherArrayList.add(newStudent);
-            printArrayTeacher();
+            cafedra.getTeacherArrayList().add(newStudent);
+            cafedra.getFaculty().getFacultyTeacherArrayList().add(newStudent);
+            University.uniTeacherArrayList.add(newStudent);
         }
         catch (Exception e) {
             System.err.println(e);
@@ -118,14 +114,13 @@ public class Cafedra {
                 toEdit.setCafedra(findCafedra(DataInput.getString("Enter a name of an existing faculty: ")));
             }
             System.out.println(toEdit);
-            printArrayTeacher();
         } catch (Exception e) {
             System.err.println(e);
         }
     }
     public static Teacher findTeacher(String teacherName) {
-        for (int i = 0; i < teacherArrayList.size(); i++) {
-            Teacher teacher = teacherArrayList.get(i);
+        for (int i = 0; i < University.uniTeacherArrayList.size(); i++) {
+            Teacher teacher = University.uniTeacherArrayList.get(i);
             if (teacherName.equalsIgnoreCase(teacher.getName())) {
                 return teacher;
             }
@@ -134,30 +129,42 @@ public class Cafedra {
     }
     public static void removeTeacher(Teacher teacher){
         try {
-            printArrayTeacher();
             Teacher toDelete = findTeacher(DataInput.getString("Enter a name of an existing student: "));
-            teacherArrayList.remove(teacher);
-            printArrayTeacher();
+            teacher.getCafedra().getTeacherArrayList().remove(teacher);
+            teacher.getCafedra().getFaculty().getFacultyTeacherArrayList().remove(teacher);
+            University.uniTeacherArrayList.remove(teacher);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public static void printArrayTeacher() {
-        if(teacherArrayList!=null) {
-            for (int i = 0; i < teacherArrayList.size(); i++) {
-                Teacher teacher = teacherArrayList.get(i);
-                System.out.println(teacher);
-            }
-        }
-        else{
-            System.out.println("Teachers is empty");
-        }
+
+
+
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public Faculty getFaculty() {
+        return faculty;
+    }
 
+    public ArrayList getStudentArrayList() {
+        return studentArrayList;
+    }
 
+    public void setStudentArrayList(ArrayList studentArrayList) {
+        this.studentArrayList = studentArrayList;
+    }
 
+    public ArrayList getTeacherArrayList() {
+        return teacherArrayList;
+    }
 
-
+    public void setTeacherArrayList(ArrayList teacherArrayList) {
+        this.teacherArrayList = teacherArrayList;
+    }
 }
