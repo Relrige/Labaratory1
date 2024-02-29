@@ -1,5 +1,8 @@
 package src.Helper;
 
+import src.Model.Student;
+import src.Model.Teacher;
+
 import java.util.AbstractList;
 import java.util.Arrays;
 

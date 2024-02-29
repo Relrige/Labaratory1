@@ -84,6 +84,24 @@ public class Cafedra {
             throw new RuntimeException(e);
         }
     }
+    public static Student findStudent(int course) {
+        for (int i = 0; i < University.uniStudentArrayList.size(); i++) {
+            Student student = University.uniStudentArrayList.get(i);
+            if (course==student.getCourse()) {
+                return student;
+            }
+        }
+        return null;
+    }
+    public static Student findStudent(String studentName,String surName,String fatherName) {
+        for (int i = 0; i < University.uniStudentArrayList.size(); i++) {
+            Student student = University.uniStudentArrayList.get(i);
+            if (studentName.equalsIgnoreCase(student.getName())||surName.equalsIgnoreCase(student.getSurname())||fatherName.equalsIgnoreCase(student.getFatherName())) {
+                return student;
+            }
+        }
+        return null;
+    }
     public static void createTeacher() {
         try {
             String name = DataInput.getString("Enter the name of the new teacher: ");
@@ -137,7 +155,15 @@ public class Cafedra {
             throw new RuntimeException(e);
         }
     }
-
+    public static Teacher findTeacher(String studentName,String surName,String fatherName) {
+        for (int i = 0; i < University.uniTeacherArrayList.size(); i++) {
+            Teacher teacher = University.uniTeacherArrayList.get(i);
+            if (studentName.equalsIgnoreCase(teacher.getName())||surName.equalsIgnoreCase(teacher.getSurname())||fatherName.equalsIgnoreCase(teacher.getFatherName())) {
+                return teacher;
+            }
+        }
+        return null;
+    }
 
 
     public void setName(String name) {

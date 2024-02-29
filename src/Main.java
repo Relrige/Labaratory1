@@ -12,8 +12,8 @@ import static src.Model.University.findFaculty;
 public class Main {
     public static void main(String[] args) {
         University uni = new University();
-        uniStudentArrayList = new ArrayList<>();
-        uniTeacherArrayList = new ArrayList<>();
+        uni.uniStudentArrayList = new ArrayList<>();
+        uni.uniTeacherArrayList = new ArrayList<>();
         int option = -1;
         while (option != 0) {
             System.out.println(Const.mainMenuText);
@@ -111,11 +111,33 @@ public class Main {
                     }
                 }
                 case 4 -> {
+                    int choice2 = DataInput.checkInt(DataInput.getInt("Enter 1 for student / 2 for teacher "),0 ,2);
+                    if(choice2==1){
 
+                        try {
 
+                            System.out.println(findStudent(DataInput.getString("Enter a name of an existing student: "),
+                                    DataInput.getString("Enter a surName of an existing student: "),
+                                    DataInput.getString("Enter a fatherName of an existing student: ")
+                            ));
+
+                        } catch (Exception e) {
+                            System.err.println(e);
+                        }
+                    }
+                    else if(choice2==2){
+                        try {
+                            System.out.println(findTeacher(DataInput.getString("Enter a name of an existing teacher: "),
+                                    DataInput.getString("Enter a surName of an existing teacher: "),
+                                    DataInput.getString("Enter a fatherName of an existing teacher: ")
+                            ));
+                        } catch (Exception e) {
+                            System.err.println(e);
+                        }
+                    }
                 }
                 case 5 -> {
-                    ArrayList.printStudentsByCourse(uniStudentArrayList);
+                    ArrayList.printStudentsByCourse(uni.uniStudentArrayList);
 
                 }
                 case 6 -> {
@@ -205,4 +227,3 @@ public class Main {
 }
 
 
-}
