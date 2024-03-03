@@ -5,7 +5,11 @@ import src.Model.Teacher;
 
 import java.util.AbstractList;
 import java.util.Arrays;
-
+/**
+ * An implementation of the ArrayList data structure.
+ *
+ * @param <E> The type of elements in the ArrayList.
+ */
 public class ArrayList<E> extends AbstractList<E> {
     private int size = 0;
     private static final int DEFAULT_CAPACITY = 10;
@@ -14,23 +18,40 @@ public class ArrayList<E> extends AbstractList<E> {
     public ArrayList() {
         elements = new Object[DEFAULT_CAPACITY];
     }
-
+    /**
+     * Constructs an ArrayList with the specified capacity.
+     *
+     * @param capacity The initial capacity of the ArrayList.
+     */
     public ArrayList(int capacity) {
         elements = new Object[capacity];
     }
-
-    @Override
+    /**
+     * Returns the number of elements in this list.
+     *
+     * @return The number of elements in this list.
+     */
     public int size() {
         return size;
     }
-
-    @Override
+    /**
+     * Returns the element at the specified position in this list.
+     *
+     * @param index The index of the element to return.
+     * @return The element at the specified position in this list.
+     * @throws IndexOutOfBoundsException If the index is out of range.
+     */
     public E get(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
         }
         return (E) elements[index];
     }
+    /**
+     * Prints students sorted by course.
+     *
+     * @param studentArrayList The ArrayList of students.
+     */
     public static void printStudentsByCourse(ArrayList studentArrayList) {
         {
             Student[] studentArray = new Student[studentArrayList.size()];
@@ -52,6 +73,12 @@ public class ArrayList<E> extends AbstractList<E> {
             }
         }
     }
+    /**
+     * Prints students of a specific course.
+     *
+     * @param studentArrayList The ArrayList of students.
+     * @param course           The course to filter students by.
+     */
     public static void printStudentsOfCourse(ArrayList studentArrayList, int course) {
         {
             Student[] studentArray = new Student[studentArrayList.size()];
@@ -65,6 +92,12 @@ public class ArrayList<E> extends AbstractList<E> {
             }
         }
     }
+    /**
+     * Prints students of a specific course sorted alphabetically.
+     *
+     * @param studentArrayList The ArrayList of students.
+     * @param course           The course to filter students by.
+     */
     public static void printStudentsOfCourseSorted(ArrayList studentArrayList, int course) {
         {
             Student[] studentArray = new Student[studentArrayList.size()];
@@ -106,7 +139,11 @@ public class ArrayList<E> extends AbstractList<E> {
             }
         }
     }
-
+    /**
+     * Prints students of a specific course sorted alphabetically.
+     *
+     * @param studentArrayList The ArrayList of students.
+     */
     public static void printStudentsByAlphabet(ArrayList<Student> studentArrayList) {
         {
             Student[] studentArray = new Student[studentArrayList.size()];
@@ -148,6 +185,11 @@ public class ArrayList<E> extends AbstractList<E> {
             }
         }
     }
+    /**
+     * Prints teachers of a specific course sorted alphabetically.
+     *
+     * @param studentArrayList The ArrayList of students.
+     */
     public static void printTeachersByAlphabet(ArrayList<Teacher> studentArrayList) {
         {
             Teacher[] studentArray = new Teacher[studentArrayList.size()];

@@ -13,15 +13,29 @@ public class Faculty {
     private  ArrayList<Student> facultyStudentArrayList;
     private  ArrayList<Teacher> facultyTeacherArrayList;
 
-    public Faculty(){
-        cafedraArrayList=new ArrayList<>();
-    }
+
     public Faculty(String name) {
-        cafedraArrayList=new ArrayList<>();
         this.name=name;
         this.facultyStudentArrayList=new ArrayList<>();
         this.facultyTeacherArrayList=new ArrayList<>();
     }
+    /**
+     * Seeds the system with initial cafedras.
+     * Adds pre-defined cafedras to the system, including their respective faculties.
+     */
+    public static void seedCafedra() {
+        cafedraArrayList=new ArrayList<>();
+        cafedraArrayList.add(new Cafedra("Cafedra FI", University.findFaculty("FI")));
+        cafedraArrayList.add(new Cafedra("Cafedra FI2", University.findFaculty("FI")));
+        cafedraArrayList.add(new Cafedra("Cafedra FI3", University.findFaculty("FI")));
+        cafedraArrayList.add(new Cafedra("Cafedra FI4", University.findFaculty("FI")));
+        cafedraArrayList.add(new Cafedra("Cafedra FI5", University.findFaculty("FSNT")));
+    }
+    /**
+     * Creates a new cafedra and adds it to the system.
+     * Prompts the user for necessary information such as name and associated faculty.
+     * If any errors occur during the process, they are caught and printed.
+     */
     public static void createCafedra() {
         try {
             String name = DataInput.getString("Enter the name of the new cafedra: ");
@@ -32,11 +46,16 @@ public class Faculty {
             }
             Cafedra newCafedra = new Cafedra(name, faculty);
             cafedraArrayList.add(newCafedra);
-
         } catch (Exception e) {
             System.err.println(e);
         }
     }
+    /**
+     * Edits the details of an existing cafedra.
+     * Prompts the user for the cafedra's name to find it.
+     * Then, provides an option to edit the cafedra's name.
+     * If any errors occur during the process, they are caught and printed.
+     */
     public static void editCafedra() {
         try {
             Cafedra toEdit = findCafedra(DataInput.getString("Enter the name of a cafedra you want to change: "));
@@ -49,6 +68,12 @@ public class Faculty {
             System.err.println(e);
         }
     }
+    /**
+     * Finds a cafedra based on its name.
+     *
+     * @param cafedraName The name of the cafedra to find.
+     * @return The cafedra object if found, otherwise null.
+     */
     public static Cafedra findCafedra(String cafedraName) {
         if(cafedraArrayList==null){
             System.out.println("Empty cafedra arrayList");
@@ -62,6 +87,13 @@ public class Faculty {
         }
         return null;
     }
+    /**
+     * Removes the specified cafedra from the system.
+     * This method removes the cafedra from the cafedra list, clears its associated student and teacher lists,
+     * and removes any associated students and teachers from the university-wide lists.
+     *
+     * @param cafedra The cafedra to be removed.
+     */
     public static void removeCafedra(Cafedra cafedra){
         cafedraArrayList.remove(cafedra);
         cafedra.getStudentArrayList().clear();
@@ -78,16 +110,16 @@ public class Faculty {
                 cafedra.getFaculty().getFacultyTeacherArrayList().remove(teacher);
             }
         }
-        for (int i = 0; i < uniStudentArrayList.size(); i++) {
-            Student student = (Student) uniStudentArrayList.get(i);
+        for (int i = 0; i < University.uniStudentArrayList.size(); i++) {
+            Student student = (Student)  University.uniStudentArrayList.get(i);
             if(student.getCafedra().equals(cafedra)){
-                uniStudentArrayList.remove(student);
+                University.uniStudentArrayList.remove(student);
             }
         }
-        for (int i = 0; i < uniTeacherArrayList.size(); i++) {
-            Teacher teacher = (Teacher) uniTeacherArrayList.get(i);
+        for (int i = 0; i <  University.uniTeacherArrayList.size(); i++) {
+            Teacher teacher = (Teacher)  University.uniTeacherArrayList.get(i);
             if(teacher.getCafedra().equals(cafedra)){
-                uniTeacherArrayList.remove(teacher);
+                University.uniTeacherArrayList.remove(teacher);
             }
         }
 
@@ -105,13 +137,6 @@ public class Faculty {
             System.out.println("Empty cafedra arrayList");
         }
     }
-    public String toString() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public ArrayList getFacultyStudentArrayList() {
         return facultyStudentArrayList;
@@ -123,7 +148,4 @@ public class Faculty {
         return cafedraArrayList;
     }
 
-    public String getName() {
-        return name;
-    }
 }

@@ -3,26 +3,30 @@ package src;
 import src.Helper.*;
 import src.Model.*;
 
-import java.io.IOException;
-import static src.Const.*;
 import static src.Model.Cafedra.*;
 import static src.Model.Faculty.findCafedra;
 import static src.Model.University.findFaculty;
 
 public class Main {
+    public static void seeder(University uni)
+    {
+        University.seedFaculty();
+        Faculty.seedCafedra();
+    }
     public static void main(String[] args) {
         University uni = new University();
-        uni.uniStudentArrayList = new ArrayList<>();
-        uni.uniTeacherArrayList = new ArrayList<>();
+        University.uniStudentArrayList = new ArrayList<>();
+        University.uniTeacherArrayList = new ArrayList<>();
+        seeder(uni);
         int option = -1;
         while (option != 0) {
-            System.out.println(Const.mainMenuText);
+            System.out.println(ConstMenus.mainMenuText);
             option = DataInput.checkInt(DataInput.getInt("Choose an option: "), 0, 10);
             int choice;
             switch (option) {
                 case 1 -> {
                     System.out.println("What exactly do you want to do with a faculty?");
-                    System.out.println(Const.changeMenu);
+                    System.out.println(ConstMenus.changeMenu);
                     choice = DataInput.getInt("> ");
                     switch (choice) {
                         case 1 -> {
@@ -30,18 +34,24 @@ public class Main {
                             uni.createFaculty();
                             University.printArray();
                         }
-                        case 2 -> uni.editFaculty();
+                        case 2 -> {
+                            University.printArray();
+                            uni.editFaculty();
+                            University.printArray();
+                        }
                         case 3 -> {
+                            University.printArray();
                             Faculty toDelete;
                             toDelete = findFaculty(DataInput.getString("Enter the name of a faculty you want to delete: "));
                             uni.removeFaculty(toDelete);
+                            University.printArray();
                         }
                         default -> System.out.println("Exit");
                     }
                 }
                 case 2 -> {
                     System.out.println("What exactly do you want to do with a Cafedra?");
-                    System.out.println(Const.changeMenu);
+                    System.out.println(ConstMenus.changeMenu);
                     choice = DataInput.getInt("> ");
                     switch (choice) {
                         case 1 -> {
@@ -49,11 +59,17 @@ public class Main {
                             Faculty.createCafedra();
                             Faculty.printArray();
                         }
-                        case 2 -> Faculty.editCafedra();
+                        case 2 -> {
+                            Faculty.printArray();
+                            Faculty.editCafedra();
+                            Faculty.printArray();
+                        }
                         case 3 -> {
+                            Faculty.printArray();
                             Cafedra toDelete;
                             toDelete = findCafedra(DataInput.getString("Enter the name of a cafedra you want to delete: "));
                             Faculty.removeCafedra(toDelete);
+                            Faculty.printArray();
                         }
                         default -> System.out.println("Exit");
                     }
@@ -62,7 +78,7 @@ public class Main {
                     int choice2 = DataInput.getInt("For student enter 1 / for teacher enter 2?");
                     if (choice2 == 1) {
                         System.out.println("What exactly do you want to do with a Student?");
-                        System.out.println(Const.changeMenu);
+                        System.out.println(ConstMenus.changeMenu);
                         choice = DataInput.getInt("> ");
                         switch (choice) {
                             case 1 -> {
@@ -85,7 +101,7 @@ public class Main {
                         }
                     } else if (choice2 == 2) {
                         System.out.println("What exactly do you want to do with a Teacher?");
-                        System.out.println(Const.changeMenu);
+                        System.out.println(ConstMenus.changeMenu);
                         choice = DataInput.getInt("> ");
                         switch (choice) {
                             case 1 -> {
@@ -134,7 +150,7 @@ public class Main {
                     }
                 }
                 case 5 -> {
-                    ArrayList.printStudentsByCourse(uni.uniStudentArrayList);
+                    ArrayList.printStudentsByCourse(University.uniStudentArrayList);
 
                 }
                 case 6 -> {
