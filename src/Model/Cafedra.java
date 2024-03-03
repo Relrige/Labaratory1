@@ -30,12 +30,16 @@ public class Cafedra {
 
     public static void createStudent() {
         try {
-            String name = DataInput.getString("Enter the name of the new student: ");
             String surname = DataInput.getString("Enter the surname of the new student: ");
+            String name = DataInput.getString("Enter the name of the new student: ");
             String FatherName = DataInput.getString("Enter the FatherName of the new student: ");
             Cafedra cafedra = findCafedra(DataInput.getString("Enter a name of an existing cafedra: "));
             String group = DataInput.getString("Enter group a new student: ");
             int course = DataInput.getInt("Enter course of a new student: ");
+            while (course <= 0 || course > 6) {
+                System.out.println("Enter a valid value for course (1-6)");
+                course = DataInput.getInt("Enter course of a new student: ");
+            }
             Student newStudent = new Student( cafedra,name,surname,FatherName, course, group);
             System.out.println(newStudent);
             University.uniStudentArrayList.add(newStudent);
@@ -48,7 +52,9 @@ public class Cafedra {
     }
     public static void editStudent() {
         try {
-            Student toEdit = findStudent(DataInput.getString("Enter a name of an existing student: "));
+            Student toEdit = findStudent(DataInput.getString("Enter a name of an existing student: "),
+                    DataInput.getString("Enter a surName of an existing student: "),
+                    DataInput.getString("Enter a fatherName of an existing student: "));
             System.out.println(toEdit);
             if (DataInput.getChar("Do you want to change name? (y/a): ") == 'y')
                 toEdit.setName(DataInput.getString("> "));
@@ -63,25 +69,6 @@ public class Cafedra {
             System.out.println(toEdit);
         } catch (Exception e) {
             System.err.println(e);
-        }
-    }
-    public static Student findStudent(String studentName) {
-        for (int i = 0; i < University.uniStudentArrayList.size(); i++) {
-            Student student = University.uniStudentArrayList.get(i);
-            if (studentName.equalsIgnoreCase(student.getName())) {
-                return student;
-            }
-        }
-        return null;
-    }
-    public static void removeStudent(Student student){
-        try {
-            Student toDelete = findStudent(DataInput.getString("Enter a name of an existing student: "));
-            student.getCafedra().getStudentArrayList().remove(student);
-            student.getCafedra().getFaculty().getFacultyStudentArrayList().remove(student);
-            University.uniStudentArrayList.remove(student);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
     public static Student findStudent(int course) {
@@ -102,10 +89,16 @@ public class Cafedra {
         }
         return null;
     }
+    public static void removeStudent(Student student){
+        student.getCafedra().getStudentArrayList().remove(student);
+        student.getCafedra().getFaculty().getFacultyStudentArrayList().remove(student);
+        University.uniStudentArrayList.remove(student);
+
+    }
     public static void createTeacher() {
         try {
-            String name = DataInput.getString("Enter the name of the new teacher: ");
             String surname = DataInput.getString("Enter the surname of the new teacher: ");
+            String name = DataInput.getString("Enter the name of the new teacher: ");
             String FatherName = DataInput.getString("Enter the FatherName of the new teacher: ");
 
             printArray();
@@ -123,7 +116,13 @@ public class Cafedra {
     }
     public static void editTeacher() {
         try {
-            Teacher toEdit = findTeacher(DataInput.getString("Enter a name of an existing student: "));
+            Teacher toEdit = findTeacher(DataInput.getString("Enter a name of an existing teacher: "),
+                    DataInput.getString("Enter a surName of an existing teacher: "),
+                    DataInput.getString("Enter a fatherName of an existing teacher: "));
+            if(toEdit==null){
+                System.out.println("Teacher not found");
+                return;
+            }
             System.out.println(toEdit);
             if (DataInput.getChar("Do you want to change name? (y/a): ") == 'y')
                 toEdit.setName(DataInput.getString("> "));
@@ -136,25 +135,6 @@ public class Cafedra {
             System.err.println(e);
         }
     }
-    public static Teacher findTeacher(String teacherName) {
-        for (int i = 0; i < University.uniTeacherArrayList.size(); i++) {
-            Teacher teacher = University.uniTeacherArrayList.get(i);
-            if (teacherName.equalsIgnoreCase(teacher.getName())) {
-                return teacher;
-            }
-        }
-        return null;
-    }
-    public static void removeTeacher(Teacher teacher){
-        try {
-            Teacher toDelete = findTeacher(DataInput.getString("Enter a name of an existing student: "));
-            teacher.getCafedra().getTeacherArrayList().remove(teacher);
-            teacher.getCafedra().getFaculty().getFacultyTeacherArrayList().remove(teacher);
-            University.uniTeacherArrayList.remove(teacher);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public static Teacher findTeacher(String studentName,String surName,String fatherName) {
         for (int i = 0; i < University.uniTeacherArrayList.size(); i++) {
             Teacher teacher = University.uniTeacherArrayList.get(i);
@@ -164,6 +144,16 @@ public class Cafedra {
         }
         return null;
     }
+    public static void removeTeacher(Teacher teacher){
+        teacher.getCafedra().getTeacherArrayList().remove(teacher);
+        teacher.getCafedra().getFaculty().getFacultyTeacherArrayList().remove(teacher);
+        University.uniTeacherArrayList.remove(teacher);
+
+    }
+    public String toString(){
+        return "Cafedra of the " + faculty +" faculty: "+name;
+    }
+
 
 
     public void setName(String name) {

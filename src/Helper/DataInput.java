@@ -75,11 +75,8 @@ public final class DataInput {
         writeText(text);
         String s = "";
 
-        try {
-            s = getString("");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        s = getString("");
+
 
         Integer value = Integer.valueOf(s);
 
@@ -92,11 +89,16 @@ public final class DataInput {
      * @return text
      * @throws IOException
      */
-    public static String getString(String text) throws IOException {
+    public static String getString(String text){
         writeText(text);
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
-        String s = br.readLine();
+        String s = null;
+        try {
+            s = br.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         return s;
     }

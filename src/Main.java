@@ -33,12 +33,8 @@ public class Main {
                         case 2 -> uni.editFaculty();
                         case 3 -> {
                             Faculty toDelete;
-                            try {
-                                toDelete = findFaculty(DataInput.getString("Enter the name of a faculty you want to delete: "));
-                                uni.removeFaculty(toDelete);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
+                            toDelete = findFaculty(DataInput.getString("Enter the name of a faculty you want to delete: "));
+                            uni.removeFaculty(toDelete);
                         }
                         default -> System.out.println("Exit");
                     }
@@ -56,12 +52,8 @@ public class Main {
                         case 2 -> Faculty.editCafedra();
                         case 3 -> {
                             Cafedra toDelete;
-                            try {
-                                toDelete = findCafedra(DataInput.getString("Enter the name of a faculty you want to delete: "));
-                                Faculty.removeCafedra(toDelete);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
+                            toDelete = findCafedra(DataInput.getString("Enter the name of a cafedra you want to delete: "));
+                            Faculty.removeCafedra(toDelete);
                         }
                         default -> System.out.println("Exit");
                     }
@@ -79,11 +71,14 @@ public class Main {
                             case 2 -> Cafedra.editStudent();
                             case 3 -> {
                                 Student toDelete;
-                                try {
-                                    toDelete = findStudent(DataInput.getString("Enter the name of a faculty you want to delete: "));
+                                toDelete = findStudent(DataInput.getString("Enter a name of an existing student: "),
+                                        DataInput.getString("Enter a surName of an existing student: "),
+                                        DataInput.getString("Enter a fatherName of an existing student: "));
+                                if(toDelete!=null)
+                                {
                                     Cafedra.removeStudent(toDelete);
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
+                                }else{
+                                    System.out.println("Student not found");
                                 }
                             }
                             default -> System.out.println("Exit");
@@ -99,11 +94,13 @@ public class Main {
                             case 2 -> Cafedra.editTeacher();
                             case 3 -> {
                                 Teacher toDelete;
-                                try {
-                                    toDelete = findTeacher(DataInput.getString("Enter the name of a faculty: "));
+                                toDelete = findTeacher(DataInput.getString("Enter a name of an existing teacher: "),
+                                        DataInput.getString("Enter a surName of an existing teacher: "),
+                                        DataInput.getString("Enter a fatherName of an existing teacher: "));
+                                if (toDelete != null) {
                                     Cafedra.removeTeacher(toDelete);
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
+                                } else {
+                                    System.out.println("Teacher not found");
                                 }
                             }
                             default -> System.out.println("Exit");
@@ -148,29 +145,28 @@ public class Main {
                     }
 
                     Faculty faculty = null;
-                    try {
-                        faculty = findFaculty(DataInput.getString("Enter the name of a faculty: "));
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    if (choice2 == 1) {
-                        ArrayList.printStudentsByAlphabet(faculty.getFacultyStudentArrayList());
-                    } else if (choice2 == 2) {
-                        ArrayList.printTeachersByAlphabet(faculty.getFacultyTeacherArrayList());
+                    faculty = findFaculty(DataInput.getString("Enter the name of a faculty: "));
+                    if(faculty!=null) {
+                        if (choice2 == 1) {
+                            ArrayList.printStudentsByAlphabet(faculty.getFacultyStudentArrayList());
+                        }  if (choice2 == 2) {
+                            ArrayList.printTeachersByAlphabet(faculty.getFacultyTeacherArrayList());
+                        }
+                    }else{
+                        System.out.println("Faculty not found");
                     }
 
                 }
                 case 7 -> {
                     Cafedra cafedra = null;
 
-                    try {
-                        cafedra = findCafedra(DataInput.getString("Enter the name of a cafedra: "));
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    cafedra = findCafedra(DataInput.getString("Enter the name of a cafedra: "));
+                    if (cafedra!=null) {
+                        ArrayList.printStudentsByCourse(cafedra.getStudentArrayList());
+                    } else {
+                        System.out.println("Cafedra not found");
 
-                    ArrayList.printStudentsByCourse(cafedra.getStudentArrayList());
+                    }
 
                 }
 
@@ -182,17 +178,17 @@ public class Main {
                     }
 
                     Cafedra cafedra = null;
-                    try {
-                        cafedra = findCafedra(DataInput.getString("Enter the name of a cafedra: "));
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                    cafedra = findCafedra(DataInput.getString("Enter the name of a cafedra: "));
+                    if(cafedra!=null){
+                        if (choice2 == 1) {
+                            ArrayList.printStudentsByAlphabet(cafedra.getStudentArrayList());
+                        }  if (choice2 == 2){
+                            ArrayList.printTeachersByAlphabet(cafedra.getTeacherArrayList());
+                        }
+                    }else{
+                        System.out.println("Cafedra not found");
                     }
 
-                    if (choice2 == 1) {
-                        ArrayList.printStudentsByAlphabet(cafedra.getStudentArrayList());
-                    } else if (choice2 == 2) {
-                        ArrayList.printTeachersByAlphabet(cafedra.getTeacherArrayList());
-                    }
 
 
 
@@ -200,30 +196,29 @@ public class Main {
                 case 9 -> {
                     Cafedra cafedra = null;
                     int course = DataInput.getInt("Enter the course: ");
-                    try {
-                        cafedra = findCafedra(DataInput.getString("Enter the name of a cafedra: "));
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                    cafedra = findCafedra(DataInput.getString("Enter the name of a cafedra: "));
+                    if(cafedra!=null) {
+                        ArrayList.printStudentsOfCourse(cafedra.getStudentArrayList(), course);
+                    }else{
+                        System.out.println("Cafedra not found");
                     }
-
-                    ArrayList.printStudentsOfCourse(cafedra.getStudentArrayList(), course);
 
                 }
 
                 case 10 -> {
                     Cafedra cafedra = null;
                     int course = DataInput.getInt("Enter the course: ");
-                    try {
-                        cafedra = findCafedra(DataInput.getString("Enter the name of a cafedra: "));
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                    cafedra = findCafedra(DataInput.getString("Enter the name of a cafedra: "));
+                    if (cafedra != null) {
+                        ArrayList.printStudentsOfCourseSorted(cafedra.getStudentArrayList(), course);
+                    } else {
+                        System.out.println("Cafedra not found");
                     }
-
-                    ArrayList.printStudentsOfCourseSorted(cafedra.getStudentArrayList(), course);
                 }
             }
         }
     }
 }
+
 
 

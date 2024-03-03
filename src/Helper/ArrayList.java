@@ -73,10 +73,29 @@ public class ArrayList<E> extends AbstractList<E> {
             }
             for (int i = studentArray.length - 1; i > 0; i--) {
                 for (int j = 0; j < i; j++) {
-                    if (studentArray[j].getCourse() > studentArray[j + 1].getCourse()) {
-                        Student temp = studentArray[j];
-                        studentArray[j] = studentArray[j + 1];
-                        studentArray[j + 1] = temp;
+                    if (studentArray[j].getSurname().charAt(0) != 'і' && studentArray[j].getSurname().charAt(0) != 'ї' && studentArray[j].getSurname().charAt(0) != 'є') {
+                        if (studentArray[j].getSurname().compareTo(studentArray[j + 1].getSurname()) > 0) {
+                            Student temp = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp;
+                        }
+                    } else {
+                        char temp = studentArray[j].getSurname().charAt(0);
+                        if (temp == 'і') {
+                            temp = 'и';
+                        }
+                        if (temp == 'ї') {
+                            temp = 'й';
+                        }
+                        if (temp == 'є') {
+                            temp = 'е';
+                        }
+                        if (temp > studentArray[j + 1].getSurname().charAt(0)) {
+                            Student temp1 = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp1;
+                        }
+
                     }
                 }
             }
@@ -88,7 +107,7 @@ public class ArrayList<E> extends AbstractList<E> {
         }
     }
 
-    public static void printStudentsByAlphabet(ArrayList studentArrayList) {
+    public static void printStudentsByAlphabet(ArrayList<Student> studentArrayList) {
         {
             Student[] studentArray = new Student[studentArrayList.size()];
             for (int i = 0; i < studentArrayList.size(); i++) {
@@ -97,10 +116,30 @@ public class ArrayList<E> extends AbstractList<E> {
 
             for (int i = studentArray.length - 1; i > 0; i--) {
                 for (int j = 0; j < i; j++) {
-                    if (studentArray[j].getSurname().compareTo( studentArray[j + 1].getSurname()) > 0) {
-                        Student temp = studentArray[j];
-                        studentArray[j] = studentArray[j + 1];
-                        studentArray[j + 1] = temp;
+                    if (studentArray[j].getSurname().charAt(0) != 'і' && studentArray[j].getSurname().charAt(0) != 'ї' && studentArray[j].getSurname().charAt(0) != 'є') {
+                        if (studentArray[j].getSurname().compareTo(studentArray[j + 1].getSurname()) > 0) {
+                            Student temp = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp;
+                        }
+                    } else {
+                        char temp = studentArray[j].getSurname().charAt(0);
+                        if (temp == 'і') {
+                            temp = 'и';
+                        }
+                        if (temp == 'ї') {
+                            temp = 'й';
+                        }
+                        if (temp == 'є') {
+                            temp = 'е';
+                        }
+                        if (temp > studentArray[j + 1].getSurname().charAt(0)) {
+                            Student temp1 = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp1;
+                        }
+
+
                     }
                 }
             }
@@ -109,7 +148,7 @@ public class ArrayList<E> extends AbstractList<E> {
             }
         }
     }
-    public static void printTeachersByAlphabet(ArrayList studentArrayList) {
+    public static void printTeachersByAlphabet(ArrayList<Teacher> studentArrayList) {
         {
             Teacher[] studentArray = new Teacher[studentArrayList.size()];
             for (int i = 0; i < studentArrayList.size(); i++) {
@@ -118,10 +157,31 @@ public class ArrayList<E> extends AbstractList<E> {
 
             for (int i = studentArray.length - 1; i > 0; i--) {
                 for (int j = 0; j < i; j++) {
-                    if (studentArray[j].getSurname().compareTo( studentArray[j + 1].getSurname()) > 0) {
-                        Teacher temp = studentArray[j];
-                        studentArray[j] = studentArray[j + 1];
-                        studentArray[j + 1] = temp;
+                    if (studentArray[j].getSurname().charAt(0) != 'і' && studentArray[j].getSurname().charAt(0) != 'ї' && studentArray[j].getSurname().charAt(0) != 'є') {
+                        if (studentArray[j].getSurname().compareTo(studentArray[j + 1].getSurname()) > 0) {
+                            Teacher temp = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp;
+                        }
+                    }
+                    else {
+                        char temp = studentArray[j].getSurname().charAt(0);
+                        if (temp == 'і') {
+                            temp = 'и';
+                        }
+                        if (temp == 'ї') {
+                            temp = 'й';
+                        }
+                        if (temp == 'є') {
+                            temp = 'е';
+                        }
+                        if(temp > studentArray[j + 1].getSurname().charAt(0)){
+                            Teacher temp1 = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp1;
+                        }
+
+
                     }
                 }
             }
@@ -130,7 +190,23 @@ public class ArrayList<E> extends AbstractList<E> {
             }
         }
     }
+    public E[] sort(ArrayList<E> arrayList){
+        E[] array = (E[]) new Object[size()];
+        for (int i = 0; i < size(); i++) {
+            array[i] = arrayList.get(i);
+        }
+        for(int i=0;i<array.length;i++){
+            for(int j=i+1;j<array.length;j++){
+                if(((Comparable)array[i]).compareTo(array[j])>0){
+                    E temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
 
+        return array;
+    }
     @Override
     public void add(int index, E element) {
         if (index > size || index < 0) {

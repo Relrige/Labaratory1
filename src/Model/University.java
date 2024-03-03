@@ -1,10 +1,10 @@
-package src.Model;
+package Model;
 
-import lombok.Data;
-import src.Helper.ArrayList;
-import src.Helper.DataInput;
 
-@Data
+import Helper.ArrayList;
+import Helper.DataInput;
+
+
 public class University {
     public static ArrayList<Faculty> facultyArrayList;
     public static ArrayList<Student> uniStudentArrayList;
@@ -43,9 +43,17 @@ public class University {
 
     public void removeFaculty(Faculty faculty) {
         facultyArrayList.remove(faculty);
+        faculty.getFacultyStudentArrayList().clear();
+        faculty.getFacultyTeacherArrayList().clear();
+        faculty.getCafedraArrayList().clear();
+        faculty = null;
     }
 
     public static Faculty findFaculty(String facultyName) {
+        if(facultyArrayList==null){
+            System.out.println("Empty faculty arrayList");
+            return null;
+        }
         for (int i = 0; i < facultyArrayList.size(); i++) {
             Faculty faculty = facultyArrayList.get(i);
             if (facultyName.equalsIgnoreCase(faculty.getName())) {
