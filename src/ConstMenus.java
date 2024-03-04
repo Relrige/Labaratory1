@@ -40,4 +40,10 @@ public class ConstMenus {
         2. Professor.
         3. Exit
         """;
+    static final String PibGroupCourse = """
+        1. PIB.
+        2. Group.
+        3. Course.
+        4. Exit
+        """;
 }

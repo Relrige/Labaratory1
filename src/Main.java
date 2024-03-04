@@ -25,56 +25,66 @@ public class Main {
             int choice;
             switch (option) {
                 case 1 -> {
-                    System.out.println("What exactly do you want to do with a faculty?");
-                    System.out.println(ConstMenus.changeMenu);
-                    choice = DataInput.getInt("> ");
-                    switch (choice) {
-                        case 1 -> {
-                            University.printArray();
-                            uni.createFaculty();
-                            University.printArray();
+                    try {
+                        System.out.println("What exactly do you want to do with a faculty?");
+                        System.out.println(ConstMenus.changeMenu);
+                        choice = DataInput.getInt("> ");
+                        switch (choice) {
+                            case 1 -> {
+                                University.printArray();
+                                uni.createFaculty();
+                                University.printArray();
+                            }
+                            case 2 -> {
+                                University.printArray();
+                                uni.editFaculty();
+                                University.printArray();
+                            }
+                            case 3 -> {
+                                University.printArray();
+                                Faculty toDelete;
+                                toDelete = findFaculty(DataInput.getString("Enter the name of a faculty you want to delete: "));
+                                uni.removeFaculty(toDelete);
+                                University.printArray();
+                            }
+                            default -> System.out.println("Exit");
                         }
-                        case 2 -> {
-                            University.printArray();
-                            uni.editFaculty();
-                            University.printArray();
-                        }
-                        case 3 -> {
-                            University.printArray();
-                            Faculty toDelete;
-                            toDelete = findFaculty(DataInput.getString("Enter the name of a faculty you want to delete: "));
-                            uni.removeFaculty(toDelete);
-                            University.printArray();
-                        }
-                        default -> System.out.println("Exit");
+                    }catch (Exception e) {
+                        System.err.println(e);
                     }
                 }
                 case 2 -> {
-                    System.out.println("What exactly do you want to do with a Cafedra?");
-                    System.out.println(ConstMenus.changeMenu);
-                    choice = DataInput.getInt("> ");
-                    switch (choice) {
-                        case 1 -> {
-                            Faculty.printArray();
-                            Faculty.createCafedra();
-                            Faculty.printArray();
+                    try {
+                        System.out.println("What exactly do you want to do with a Cafedra?");
+                        System.out.println(ConstMenus.changeMenu);
+                        choice = DataInput.getInt("> ");
+                        switch (choice) {
+                            case 1 -> {
+                                Faculty.printArray();
+                                Faculty.createCafedra();
+                                Faculty.printArray();
+                            }
+                            case 2 -> {
+                                Faculty.printArray();
+                                Faculty.editCafedra();
+                                Faculty.printArray();
+                            }
+                            case 3 -> {
+                                Faculty.printArray();
+                                Cafedra toDelete;
+                                toDelete = findCafedra(DataInput.getString("Enter the name of a cafedra you want to delete: "));
+                                Faculty.removeCafedra(toDelete);
+                                Faculty.printArray();
+                            }
+                            default -> System.out.println("Exit");
                         }
-                        case 2 -> {
-                            Faculty.printArray();
-                            Faculty.editCafedra();
-                            Faculty.printArray();
-                        }
-                        case 3 -> {
-                            Faculty.printArray();
-                            Cafedra toDelete;
-                            toDelete = findCafedra(DataInput.getString("Enter the name of a cafedra you want to delete: "));
-                            Faculty.removeCafedra(toDelete);
-                            Faculty.printArray();
-                        }
-                        default -> System.out.println("Exit");
+                    }
+                    catch (Exception e) {
+                        System.err.println(e);
                     }
                 }
                 case 3 -> {
+                    try{
                     int choice2 = DataInput.getInt("For student enter 1 / for teacher enter 2?");
                     if (choice2 == 1) {
                         System.out.println("What exactly do you want to do with a Student?");
@@ -122,31 +132,51 @@ public class Main {
                             default -> System.out.println("Exit");
                         }
                     }
+                    }
+                    catch (Exception e) {
+                        System.err.println(e);
+                    }
                 }
                 case 4 -> {
-                    int choice2 = DataInput.checkInt(DataInput.getInt("Enter 1 for student / 2 for teacher "),0 ,2);
-                    if(choice2==1){
+                    try {
+                        int choice2 = DataInput.checkInt(DataInput.getInt("Enter 1 for student / 2 for teacher "), 0, 2);
+                        if (choice2 == 1) {
+                            System.out.println("What exactly do you want search for in student ?");
+                            System.out.println(ConstMenus.PibGroupCourse);
+                            choice = DataInput.getInt("> ");
+                            try {
+                                switch (choice) {
+                                    case 1 -> {
+                                        System.out.println(findStudent(DataInput.getString("Enter a name of an existing student: "),
+                                                DataInput.getString("Enter a surName of an existing student: "),
+                                                DataInput.getString("Enter a fatherName of an existing student: ")
+                                        ));
+                                    }
+                                    case 2 -> {
+                                        findStudent(DataInput.getString("Enter a name of an group: "));
+                                    }
+                                    case 3 -> {
+                                        findStudent(DataInput.getInt("Enter a name of an course: "));
+                                    }
+                                    default -> System.out.println("Exit");
+                                }
+                            } catch (Exception e) {
+                                System.err.println(e);
+                            }
 
-                        try {
-
-                            System.out.println(findStudent(DataInput.getString("Enter a name of an existing student: "),
-                                    DataInput.getString("Enter a surName of an existing student: "),
-                                    DataInput.getString("Enter a fatherName of an existing student: ")
-                            ));
-
-                        } catch (Exception e) {
-                            System.err.println(e);
+                        } else if (choice2 == 2) {
+                            try {
+                                System.out.println(findTeacher(DataInput.getString("Enter a name of an existing teacher: "),
+                                        DataInput.getString("Enter a surName of an existing teacher: "),
+                                        DataInput.getString("Enter a fatherName of an existing teacher: ")
+                                ));
+                            } catch (Exception e) {
+                                System.err.println(e);
+                            }
                         }
                     }
-                    else if(choice2==2){
-                        try {
-                            System.out.println(findTeacher(DataInput.getString("Enter a name of an existing teacher: "),
-                                    DataInput.getString("Enter a surName of an existing teacher: "),
-                                    DataInput.getString("Enter a fatherName of an existing teacher: ")
-                            ));
-                        } catch (Exception e) {
-                            System.err.println(e);
-                        }
+                    catch (Exception e) {
+                        System.err.println(e);
                     }
                 }
                 case 5 -> {

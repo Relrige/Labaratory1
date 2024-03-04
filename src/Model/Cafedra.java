@@ -1,10 +1,10 @@
 package src.Model;
 
 import lombok.Data;
-import src.Helper.ArrayList;
-import src.Helper.DataInput;
+import src.Helper.*;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import static src.Model.Faculty.findCafedra;
 import static src.Model.Faculty.printArray;
@@ -28,6 +28,14 @@ public class Cafedra {
         studentArrayList=new ArrayList<>();
         teacherArrayList=new ArrayList<>();
     }
+    public static boolean containsDigit(String s) {
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Creates a new student and adds it to the system.
      * Prompts the user for necessary information such as name, surname, father's name, department, group, and course.
@@ -36,9 +44,28 @@ public class Cafedra {
      */
     public static void createStudent() {
         try {
-            String surname = DataInput.getString("Enter the surname of the new student: ");
-            String name = DataInput.getString("Enter the name of the new student: ");
-            String FatherName = DataInput.getString("Enter the FatherName of the new student: ");
+            String surname;
+            do {
+                surname = DataInput.getString("Enter the surname of the new student: ");
+                if (containsDigit(surname)) {
+                    System.out.println("Surname should not contain digits. Please enter a valid surname.");
+                }
+            } while (containsDigit(surname));
+            String name;
+            do {
+                name = DataInput.getString("Enter the name of the new student: ");
+                if (containsDigit(name)) {
+                    System.out.println("Name should not contain digits. Please enter a valid name.");
+                }
+            } while (containsDigit(name));
+
+            String fatherName;
+            do {
+                fatherName = DataInput.getString("Enter the father's name of the new student: ");
+                if (containsDigit(fatherName)) {
+                    System.out.println("Father's name should not contain digits. Please enter a valid father's name.");
+                }
+            } while (containsDigit(fatherName));
             printArray();
             Cafedra cafedra = findCafedra(DataInput.getString("Enter a name of an existing cafedra: "));
             while (cafedra==null) {
@@ -51,7 +78,7 @@ public class Cafedra {
                 System.out.println("Enter a valid value for course (1-6)");
                 course = DataInput.getInt("Enter course of a new student: ");
             }
-            Student newStudent = new Student( cafedra,name,surname,FatherName, course, group);
+            Student newStudent = new Student( cafedra,name,surname,fatherName, course, group);
             System.out.println(newStudent);
             University.uniStudentArrayList.add(newStudent);
             cafedra.getStudentArrayList().add(newStudent);
@@ -95,14 +122,34 @@ public class Cafedra {
      * @param course The course of the student to find.
      * @return The student object if found, otherwise null.
      */
-    public static Student findStudent(int course) {
+    public static void findStudent(int course) {
+        int counter=0;
         for (int i = 0; i < University.uniStudentArrayList.size(); i++) {
             Student student = University.uniStudentArrayList.get(i);
             if (course==student.getCourse()) {
-                return student;
+                System.out.println(student);
+                counter++;
             }
         }
-        return null;
+        if(counter==0)
+            System.out.println("No students found");
+    }    /**
+     * Finds a student based on their course.
+     *
+     * @param group The group of the student to find.
+     * @return The student object if found, otherwise null.
+     */
+    public static void findStudent(String group) {
+        int counter=0;
+        for (int i = 0; i < University.uniStudentArrayList.size(); i++) {
+            Student student = University.uniStudentArrayList.get(i);
+            if (Objects.equals(group, student.getGroup())) {
+                System.out.println(student);
+                counter++;
+            }
+        }
+        if(counter==0)
+            System.out.println("No students found");
     }
     /**
      * Finds a student based on their name, surname, and father's name.
@@ -119,6 +166,8 @@ public class Cafedra {
                 return student;
             }
         }
+
+        System.out.println("No students found");
         return null;
     }
     /**
@@ -142,16 +191,34 @@ public class Cafedra {
      */
     public static void createTeacher() {
         try {
-            String surname = DataInput.getString("Enter the surname of the new teacher: ");
-            String name = DataInput.getString("Enter the name of the new teacher: ");
-            String FatherName = DataInput.getString("Enter the FatherName of the new teacher: ");
+            String surname;
+            do {
+                surname = DataInput.getString("Enter the surname of the new student: ");
+                if (containsDigit(surname)) {
+                    System.out.println("Surname should not contain digits. Please enter a valid surname.");
+                }
+            } while (containsDigit(surname));
+            String name;
+            do {
+                name = DataInput.getString("Enter the name of the new student: ");
+                if (containsDigit(name)) {
+                    System.out.println("Name should not contain digits. Please enter a valid name.");
+                }
+            } while (containsDigit(name));
+            String fatherName;
+            do {
+                fatherName = DataInput.getString("Enter the father's name of the new student: ");
+                if (containsDigit(fatherName)) {
+                    System.out.println("Father's name should not contain digits. Please enter a valid father's name.");
+                }
+            } while (containsDigit(fatherName));
             printArray();
             Cafedra cafedra = findCafedra(DataInput.getString("Enter a name of an existing cafedra: "));
             while (cafedra==null) {
                 System.out.println("Enter a valid value for cafedra");
                 cafedra = findCafedra(DataInput.getString("Enter a name of an existing cafedra: "));
             }
-            Teacher newStudent = new Teacher(cafedra,name,surname,FatherName);
+            Teacher newStudent = new Teacher(cafedra,name,surname,fatherName);
             System.out.println(newStudent);
             cafedra.getTeacherArrayList().add(newStudent);
             cafedra.getFaculty().getFacultyTeacherArrayList().add(newStudent);
@@ -204,6 +271,7 @@ public class Cafedra {
                 return teacher;
             }
         }
+        System.out.println("No teachers found");
         return null;
     }
     /**
@@ -220,6 +288,7 @@ public class Cafedra {
         University.uniTeacherArrayList.remove(teacher);
 
     }
+
     public String toString(){
         return "Cafedra of the " + faculty +" faculty: "+name;
     }
