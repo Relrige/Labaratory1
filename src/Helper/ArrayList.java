@@ -132,6 +132,10 @@ public class ArrayList<E> extends AbstractList<E> {
                             Student temp2 = studentArray[j];
                             studentArray[j] = studentArray[j + 1];
                             studentArray[j + 1] = temp2;
+                        } else if (temp == studentArray[j + 1].getSurname().charAt(0)) {
+                            Student temp3 = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp3;
                         }
 
                     }
@@ -184,6 +188,10 @@ public class ArrayList<E> extends AbstractList<E> {
                             Student temp2 = studentArray[j];
                             studentArray[j] = studentArray[j + 1];
                             studentArray[j + 1] = temp2;
+                        } else if (temp == studentArray[j + 1].getSurname().charAt(0)) {
+                            Student temp3 = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp3;
                         }
 
 
@@ -235,6 +243,10 @@ public class ArrayList<E> extends AbstractList<E> {
                             Teacher temp2 = studentArray[j];
                             studentArray[j] = studentArray[j + 1];
                             studentArray[j + 1] = temp2;
+                        } else if (temp == studentArray[j + 1].getSurname().charAt(0)) {
+                            Teacher temp3 = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp3;
                         }
 
 
