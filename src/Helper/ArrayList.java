@@ -128,6 +128,11 @@ public class ArrayList<E> extends AbstractList<E> {
                             studentArray[j] = studentArray[j + 1];
                             studentArray[j + 1] = temp1;
                         }
+                        else if (studentArray[j + 1].getSurname().charAt(0) == studentArray[j + 1].getSurname().charAt(0) && studentArray[j].getSurname().compareTo(studentArray[j + 1].getSurname()) > 0) {
+                            Student temp2 = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp2;
+                        }
 
                     }
                 }
@@ -175,6 +180,11 @@ public class ArrayList<E> extends AbstractList<E> {
                             studentArray[j] = studentArray[j + 1];
                             studentArray[j + 1] = temp1;
                         }
+                        else if (studentArray[j + 1].getSurname().charAt(0) == studentArray[j + 1].getSurname().charAt(0) && studentArray[j].getSurname().compareTo(studentArray[j + 1].getSurname()) > 0) {
+                            Student temp2 = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp2;
+                        }
 
 
                     }
@@ -221,6 +231,10 @@ public class ArrayList<E> extends AbstractList<E> {
                             Teacher temp1 = studentArray[j];
                             studentArray[j] = studentArray[j + 1];
                             studentArray[j + 1] = temp1;
+                        } else if (studentArray[j + 1].getSurname().charAt(0) == studentArray[j + 1].getSurname().charAt(0) && studentArray[j].getSurname().compareTo(studentArray[j + 1].getSurname()) > 0) {
+                            Teacher temp2 = studentArray[j];
+                            studentArray[j] = studentArray[j + 1];
+                            studentArray[j + 1] = temp2;
                         }
 
 
