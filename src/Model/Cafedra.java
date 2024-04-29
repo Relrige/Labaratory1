@@ -36,6 +36,158 @@ public class Cafedra {
         }
         return false;
     }
+    public static void teacherSeeder(){
+        Cafedra cafedra=findCafedra("Cafedra of informatics");
+        Teacher newTeacher=new Teacher(findCafedra("Cafedra of informatics"),"Владислав","Швець","Олександрович");
+        University.uniTeacherArrayList.add(newTeacher);
+        cafedra.getTeacherArrayList().add(newTeacher);
+        cafedra.getFaculty().getFacultyTeacherArrayList().add(newTeacher);
+
+        newTeacher = new Teacher(cafedra, "Олександр", "Петров", "Сергійович");
+        University.uniTeacherArrayList.add(newTeacher);
+        cafedra.getTeacherArrayList().add(newTeacher);
+        cafedra.getFaculty().getFacultyTeacherArrayList().add(newTeacher);
+
+        newTeacher = new Teacher(cafedra, "Наталія", "Іванова", "Василівна");
+        University.uniTeacherArrayList.add(newTeacher);
+        cafedra.getTeacherArrayList().add(newTeacher);
+        cafedra.getFaculty().getFacultyTeacherArrayList().add(newTeacher);
+        cafedra=findCafedra("Cafedra multimedia");
+        newTeacher = new Teacher(cafedra, "Ігор", "Сидоренко", "Петрович");
+        University.uniTeacherArrayList.add(newTeacher);
+        cafedra.getTeacherArrayList().add(newTeacher);
+        cafedra.getFaculty().getFacultyTeacherArrayList().add(newTeacher);
+
+        newTeacher = new Teacher(cafedra, "Олена", "Михайленко", "Іванівна");
+        University.uniTeacherArrayList.add(newTeacher);
+        cafedra.getTeacherArrayList().add(newTeacher);
+        cafedra.getFaculty().getFacultyTeacherArrayList().add(newTeacher);
+
+        newTeacher = new Teacher(cafedra, "Максим", "Коваленко", "Олександрович");
+        University.uniTeacherArrayList.add(newTeacher);
+        cafedra.getTeacherArrayList().add(newTeacher);
+        cafedra.getFaculty().getFacultyTeacherArrayList().add(newTeacher);
+        cafedra=findCafedra("Cafedra politologii");
+        newTeacher = new Teacher(cafedra, "Тетяна", "Сергієнко", "Миколаївна");
+        University.uniTeacherArrayList.add(newTeacher);
+        cafedra.getTeacherArrayList().add(newTeacher);
+        cafedra.getFaculty().getFacultyTeacherArrayList().add(newTeacher);
+
+        newTeacher = new Teacher(cafedra, "Андрій", "Григоренко", "Анатолійович");
+        University.uniTeacherArrayList.add(newTeacher);
+        cafedra.getTeacherArrayList().add(newTeacher);
+        cafedra.getFaculty().getFacultyTeacherArrayList().add(newTeacher);
+    }
+    public static void studentSeeder(){
+        Cafedra cafedra=findCafedra("Cafedra of informatics");
+        Student newStudent=new Student(findCafedra("Cafedra of informatics"),"Владислав","Швець","Олександрович",1,"Група1");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Іван", "Петренко", "Олександрович", 2, "Група1");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Марія", "Іваненко", "Олексіївна", 3, "Група1");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Анна", "Михайленко", "Петрівна", 1, "Група1");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Олексій", "Коваленко", "Миколайович", 2, "Група2");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Юлія", "Сергієнко", "Валеріївна", 3, "Група2");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        Student student8 = new Student(cafedra, "Наталія", "Павленко", "Михайлівна", 2, "Група2");
+        University.uniStudentArrayList.add(student8);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        cafedra = findCafedra("Cafedra multimedia");
+        newStudent = new Student(cafedra, "Ігор", "Бондаренко", "Олександрович", 3, "Група3");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Юлія", "Сидоренко", "Анатоліївна", 2, "Група3");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        Student student14 = new Student(cafedra, "Наталія", "Кравченко", "Миколаївна", 4, "Група3");
+        University.uniStudentArrayList.add(student14);
+        cafedra.getStudentArrayList().add(student14);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(student14);
+
+        newStudent = new Student(cafedra, "Віталій", "Соколов", "Олексійович", 1, "Група3");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Оксана", "Козлова", "Василівна", 2, "Група3");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Микола", "Мельник", "Андрійович", 2, "Група4");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Олена", "Полякова", "Сергіївна", 1, "Група4");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        cafedra=findCafedra("Cafedra politologii");
+
+        newStudent = new Student(cafedra, "Вікторія", "Павлюченко", "Михайлівна", 4, "Група4");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Сергій", "Коваль", "Олександрович", 1, "Група4");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Олег", "Мороз", "Олексійович", 1, "Група5");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Катерина", "Козачук", "Анатоліївна", 2, "Група5");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Ірина", "Романенко", "Андріївна", 1, "Група5");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Олександр", "Шевченко", "Вікторович", 2, "Група5");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+
+        newStudent = new Student(cafedra, "Наталія", "Поліщук", "Василівна", 4, "Група5");
+        University.uniStudentArrayList.add(newStudent);
+        cafedra.getStudentArrayList().add(newStudent);
+        cafedra.getFaculty().getFacultyStudentArrayList().add(newStudent);
+    }
     /**
      * Creates a new student and adds it to the system.
      * Prompts the user for necessary information such as name, surname, father's name, department, group, and course.

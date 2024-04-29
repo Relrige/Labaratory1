@@ -51,7 +51,6 @@ public class University {
             Faculty newFaculty = new Faculty(name);
             facultyArrayList.add(newFaculty);
         } catch (Exception e) {
-            // Catching and printing any exceptions that occur
             System.err.println(e);
         }
     }
@@ -73,7 +72,6 @@ public class University {
             System.err.println(e);
         }
     }
-
     /**
      * Prints the details of all faculties in the university.
      */

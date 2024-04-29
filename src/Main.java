@@ -12,6 +12,8 @@ public class Main {
     {
         University.seedFaculty();
         Faculty.seedCafedra();
+        Cafedra.studentSeeder();
+        Cafedra.teacherSeeder();
     }
     public static void main(String[] args) {
         University uni = new University();

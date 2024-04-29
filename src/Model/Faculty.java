@@ -25,11 +25,11 @@ public class Faculty {
      */
     public static void seedCafedra() {
         cafedraArrayList=new ArrayList<>();
-        cafedraArrayList.add(new Cafedra("Cafedra FI", University.findFaculty("FI")));
-        cafedraArrayList.add(new Cafedra("Cafedra FI2", University.findFaculty("FI")));
+        cafedraArrayList.add(new Cafedra("Cafedra of informatics", University.findFaculty("FI")));
+        cafedraArrayList.add(new Cafedra("Cafedra multimedia", University.findFaculty("FI")));
         cafedraArrayList.add(new Cafedra("Cafedra FI3", University.findFaculty("FI")));
         cafedraArrayList.add(new Cafedra("Cafedra FI4", University.findFaculty("FI")));
-        cafedraArrayList.add(new Cafedra("Cafedra FI5", University.findFaculty("FSNT")));
+        cafedraArrayList.add(new Cafedra("Cafedra politologii", University.findFaculty("FSNST")));
     }
     /**
      * Creates a new cafedra and adds it to the system.
